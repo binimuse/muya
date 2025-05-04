@@ -4,6 +4,7 @@ import 'package:muya/gen/assets.gen.dart';
 import 'dart:html' as html;
 import 'dart:convert';
 import 'dart:typed_data';
+import 'dart:js' as js;
 
 class CreateResumeController extends GetxController {
   var selectedIndex = 0.obs;
@@ -39,25 +40,36 @@ class CreateResumeController extends GetxController {
 
   void pickImage() {
     // Check if we're in a Telegram WebApp
-    if ((html.window as dynamic).Telegram?.WebApp != null) {
-      // Request file from Telegram
-      (html.window as dynamic).Telegram.WebApp.showPopup(
-        {
-          'title': 'Select Photo', 
-          'message': 'Choose a photo from your device or take a new one',
-          'buttons': [
-            {'id': 'gallery', 'type': 'default', 'text': 'Choose from Gallery'},
-            {'id': 'camera', 'type': 'default', 'text': 'Take Photo'},
-          ],
-        },
-        (buttonId) {
-          if (buttonId == 'gallery') {
-            _pickFromGallery();
-          } else if (buttonId == 'camera') {
-            _takePhoto();
-          }
-        },
-      );
+    final telegramWebApp = js.context['Telegram']?['WebApp'];
+    if (telegramWebApp != null) {
+      try {
+        // Request file from Telegram
+        telegramWebApp.callMethod('showPopup', [
+          {
+            'title': 'Select Photo',
+            'message': 'Choose a photo from your device or take a new one',
+            'buttons': [
+              {
+                'id': 'gallery',
+                'type': 'default',
+                'text': 'Choose from Gallery',
+              },
+              {'id': 'camera', 'type': 'default', 'text': 'Take Photo'},
+            ],
+          },
+          (buttonId) {
+            if (buttonId == 'gallery') {
+              _pickFromGallery();
+            } else if (buttonId == 'camera') {
+              _takePhoto();
+            }
+          },
+        ]);
+      } catch (e) {
+        print('Error using Telegram WebApp API: $e');
+        // Fallback to regular file picker if Telegram API fails
+        _pickFromGallery();
+      }
     } else {
       // Fallback for non-Telegram environments
       _pickFromGallery();
@@ -98,6 +110,8 @@ class CreateResumeController extends GetxController {
         })
         .catchError((error) {
           print('Error accessing camera: $error');
+          // Fallback to gallery if camera access fails
+          _pickFromGallery();
         });
   }
 }

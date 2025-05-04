@@ -52,11 +52,13 @@ class HomeView extends GetView<HomeController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Hello 👋',
-                          style: AppTextStyles.titleBold.copyWith(
-                            color: AppColors.grayDefault,
-                            fontSize: AppSizes.font_22,
+                        Obx(
+                          () => Text(
+                            'Hello ${controller.userName.value.isNotEmpty ? controller.userName.value : 'User'} 👋',
+                            style: AppTextStyles.titleBold.copyWith(
+                              color: AppColors.grayDefault,
+                              fontSize: AppSizes.font_22,
+                            ),
                           ),
                         ),
                         IconButton(
@@ -216,20 +218,24 @@ class HomeView extends GetView<HomeController> {
                           ],
                         ),
                         const SizedBox(height: 18),
-                        GridView.count(
-                          crossAxisCount: 3,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          childAspectRatio: 0.6,
-                          crossAxisSpacing: 18,
-                          mainAxisSpacing: 18,
-                          children: [
-                            _buildTemplateItem('Sapphire'),
-                            _buildTemplateItem('Amber'),
-                            _buildTemplateItem('Garnet'),
-                            _buildTemplateItem('Topaz'),
-                            _buildTemplateItem('Onyx'),
-                          ],
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: GridView.count(
+                              crossAxisCount: 3,
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              childAspectRatio: 0.6,
+                              crossAxisSpacing: 18,
+                              mainAxisSpacing: 18,
+                              children: [
+                                _buildTemplateItem('Sapphire'),
+                                _buildTemplateItem('Amber'),
+                                _buildTemplateItem('Garnet'),
+                                _buildTemplateItem('Topaz'),
+                                _buildTemplateItem('Onyx'),
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -380,5 +386,4 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-
 }
