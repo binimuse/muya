@@ -6,6 +6,9 @@ class HomeController extends GetxController {
   final List<Map<String, String>> resumeSlides = [
     {'title': 'Create Resume', 'subtitle': 'Create a new professional resumes'},
     {'title': 'Edit Resume', 'subtitle': 'Modify your existing resume'},
+    {'title': 'Download Resume', 'subtitle': 'Download your resume'},
+    {'title': 'Upload Resume', 'subtitle': 'Upload your resume'},
+    {'title': 'Share Resume', 'subtitle': 'Share your resume'},
   ];
   var selectedTabIndex = 0.obs;
 
