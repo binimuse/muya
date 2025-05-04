@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:muya/app/common/app_toasts.dart';
 import 'package:muya/app/theme/app_colors.dart';
 import 'package:muya/app/theme/app_sizes.dart';
 import 'package:muya/app/theme/app_text_styles.dart';
@@ -46,7 +47,7 @@ class HomeView extends GetView<HomeController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 5.h),
+                    SizedBox(height: 4.h),
                     // Header with greeting and menu
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -226,8 +227,8 @@ class HomeView extends GetView<HomeController> {
                             _buildTemplateItem('Sapphire'),
                             _buildTemplateItem('Amber'),
                             _buildTemplateItem('Garnet'),
-                            _buildTemplateItem('Garnet'),
-                            _buildTemplateItem('Garnet'),
+                            _buildTemplateItem('Topaz'),
+                            _buildTemplateItem('Onyx'),
                           ],
                         ),
                       ],
@@ -238,64 +239,6 @@ class HomeView extends GetView<HomeController> {
             ],
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildResumeCard(String style) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: const Color(0xFFF5F5F5),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Icon(
-                Icons.description_outlined,
-                color: Color(0xFF6A5B92),
-              ),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Create Resume',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    style,
-                    style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
-                  ),
-                ],
-              ),
-            ),
-            const Icon(Icons.arrow_forward, color: Color(0xFF6A5B92)),
-          ],
-        ),
       ),
     );
   }
@@ -322,10 +265,14 @@ class HomeView extends GetView<HomeController> {
                         ),
                         child: Image.asset(
                           name == 'Sapphire'
-                              ? Assets.images.cv2.path
-                              : name == 'Amber'
                               ? Assets.images.cv3.path
-                              : Assets.images.cv1.path,
+                              : name == 'Amber'
+                              ? Assets.images.cv4.path
+                              : name == 'Topaz'
+                              ? Assets.images.cv1.path
+                              : name == 'Onyx'
+                              ? Assets.images.cv5.path
+                              : Assets.images.cv4.path,
                           fit: BoxFit.contain,
                           errorBuilder:
                               (context, error, stackTrace) => Center(
@@ -363,12 +310,8 @@ class HomeView extends GetView<HomeController> {
                               onPressed: () {
                                 // TODO: Implement download functionality
                                 Get.back();
-                                Get.snackbar(
-                                  'Download',
+                                AppToasts.showSuccess(
                                   'Template downloaded successfully',
-                                  snackPosition: SnackPosition.BOTTOM,
-                                  backgroundColor: AppColors.primary,
-                                  colorText: Colors.white,
                                 );
                               },
                               child: const Text(
@@ -407,10 +350,14 @@ class HomeView extends GetView<HomeController> {
                 borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
                   name == 'Sapphire'
-                      ? Assets.images.cv2.path
-                      : name == 'Amber'
                       ? Assets.images.cv3.path
-                      : Assets.images.cv1.path,
+                      : name == 'Amber'
+                      ? Assets.images.cv4.path
+                      : name == 'Topaz'
+                      ? Assets.images.cv1.path
+                      : name == 'Onyx'
+                      ? Assets.images.cv5.path
+                      : Assets.images.cv4.path,
                   fit: BoxFit.cover,
                   errorBuilder:
                       (context, error, stackTrace) => Center(
@@ -434,48 +381,4 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _buildCategoryItem(String title) {
-    return Column(
-      children: [
-        Container(
-          height: 120,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 5,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Container(
-              color: Colors.white,
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: List.generate(
-                  10,
-                  (index) => Container(
-                    height: 4,
-                    width: double.infinity,
-                    color: Colors.grey.shade200,
-                    margin: const EdgeInsets.only(bottom: 4),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          title,
-          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-        ),
-      ],
-    );
-  }
 }

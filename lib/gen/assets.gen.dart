@@ -866,9 +866,6 @@ class $AssetsImagesGen {
   /// File path: assets/images/cv1.png
   AssetGenImage get cv1 => const AssetGenImage('assets/images/cv1.png');
 
-  /// File path: assets/images/cv2.jpg
-  AssetGenImage get cv2 => const AssetGenImage('assets/images/cv2.jpg');
-
   /// File path: assets/images/cv3.jpg
   AssetGenImage get cv3 => const AssetGenImage('assets/images/cv3.jpg');
 
@@ -886,8 +883,7 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/telebirr.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [cbe, cv1, cv2, cv3, cv4, cv5, qrcode, telebirr];
+  List<AssetGenImage> get values => [cbe, cv1, cv3, cv4, cv5, qrcode, telebirr];
 }
 
 class $AssetsLogosGen {

@@ -4,6 +4,8 @@ import 'package:muya/app/theme/app_sizes.dart';
 import 'package:muya/app/theme/app_text_styles.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:get/get.dart';
+import 'dart:html' as html;
+import 'dart:convert';
 import '../controllers/create_resume_controller.dart';
 import '../views/payment_view.dart';
 
@@ -82,21 +84,37 @@ class CreateResumeFormView extends StatelessWidget {
                     Center(
                       child: Column(
                         children: [
-                          Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: AppColors.white30,
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(
+                          GestureDetector(
+                            onTap: () => _pickImage(context, controller),
+                            child: Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
                                 color: AppColors.white30,
-                                width: 2,
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(
+                                  color: AppColors.white30,
+                                  width: 2,
+                                ),
                               ),
-                            ),
-                            child: Icon(
-                              Icons.camera_alt_outlined,
-                              size: 40,
-                              color: Color(0xFFB0AFC6),
+                              child: Obx(
+                                () =>
+                                    controller.profilePhoto.value != null
+                                        ? ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                            16,
+                                          ),
+                                          child: Image.memory(
+                                            controller.profilePhoto.value!,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        )
+                                        : Icon(
+                                          Icons.camera_alt_outlined,
+                                          size: 40,
+                                          color: Color(0xFFB0AFC6),
+                                        ),
+                              ),
                             ),
                           ),
                           SizedBox(height: 8),
@@ -813,5 +831,9 @@ class CreateResumeFormView extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void _pickImage(BuildContext context, CreateResumeController controller) {
+    controller.pickImage();
   }
 }
