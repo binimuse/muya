@@ -31,12 +31,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-build/web/
-!build/web/index.html
-!build/web/manifest.json
-!build/web/favicon.png
-!build/web/icons/
-!build/web/assets/
+
 
 # Symbolication related
 app.*.symbols
