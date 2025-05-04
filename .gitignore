@@ -32,6 +32,11 @@ migrate_working_dir/
 .pub/
 /build/
 build/web/
+!build/web/index.html
+!build/web/manifest.json
+!build/web/favicon.png
+!build/web/icons/
+!build/web/assets/
 
 # Symbolication related
 app.*.symbols
@@ -43,8 +48,6 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-
-# Web related
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
