@@ -22,13 +22,18 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _getTelegramUserData();
+    _initializeTelegramWebApp();
   }
 
-  void _getTelegramUserData() {
+  void _initializeTelegramWebApp() {
     try {
       final telegramWebApp = js.context['Telegram']?['WebApp'];
       if (telegramWebApp != null) {
+        // Initialize the WebApp
+        telegramWebApp.callMethod('ready');
+        telegramWebApp.callMethod('expand');
+
+        // Get user data
         final initData = telegramWebApp['initData'];
         if (initData != null) {
           final user = initData['user'];
@@ -46,11 +51,18 @@ class HomeController extends GetxController {
             } else {
               userName.value = 'User';
             }
+
+            // Print user data for debugging
+            print('Telegram User Data:');
+            print('First Name: ${firstName.value}');
+            print('Last Name: ${lastName.value}');
+            print('Username: ${username.value}');
+            print('Phone: ${phoneNumber.value}');
           }
         }
       }
     } catch (e) {
-      print('Error getting Telegram user data: $e');
+      print('Error initializing Telegram WebApp: $e');
     }
   }
 }
