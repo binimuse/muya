@@ -53,12 +53,60 @@ class HomeView extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Obx(
-                          () => Text(
-                            'Hello ${controller.userName.value.isNotEmpty ? controller.userName.value : 'User'} 👋',
-                            style: AppTextStyles.titleBold.copyWith(
-                              color: AppColors.grayDefault,
-                              fontSize: AppSizes.font_22,
-                            ),
+                          () => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Hello ${controller.userName.value.isNotEmpty ? controller.userName.value : 'User'} 👋',
+                                style: AppTextStyles.titleBold.copyWith(
+                                  color: AppColors.grayDefault,
+                                  fontSize: AppSizes.font_22,
+                                ),
+                              ),
+                              // Debug information
+                              if (controller.userName.value.isEmpty)
+                                Text(
+                                  'Debug Info:',
+                                  style: AppTextStyles.bodySmallRegular
+                                      .copyWith(
+                                        color: Colors.red,
+                                        fontSize: AppSizes.font_12,
+                                      ),
+                                ),
+                              if (controller.userName.value.isEmpty)
+                                Obx(
+                                  () => Text(
+                                    'First Name: ${controller.firstName.value}',
+                                    style: AppTextStyles.bodySmallRegular
+                                        .copyWith(
+                                          color: Colors.red,
+                                          fontSize: AppSizes.font_12,
+                                        ),
+                                  ),
+                                ),
+                              if (controller.userName.value.isEmpty)
+                                Obx(
+                                  () => Text(
+                                    'Last Name: ${controller.lastName.value}',
+                                    style: AppTextStyles.bodySmallRegular
+                                        .copyWith(
+                                          color: Colors.red,
+                                          fontSize: AppSizes.font_12,
+                                        ),
+                                  ),
+                                ),
+                              if (controller.userName.value.isEmpty)
+                                Obx(
+                                  () => Text(
+                                    'Username: ${controller.username.value}',
+                                    style: AppTextStyles.bodySmallRegular
+                                        .copyWith(
+                                          color: Colors.red,
+                                          fontSize: AppSizes.font_12,
+                                        ),
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
                         IconButton(
