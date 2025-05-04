@@ -4,7 +4,7 @@ import 'dart:js' as js;
 class HomeController extends GetxController {
   var templates = ["Sapphire", "Amber", "Garnet", "Topaz", "Onyx"].obs;
   final List<Map<String, String>> resumeSlides = [
-    {'title': 'Create Resume', 'subtitle': 'Create a new professional resume'},
+    {'title': 'Create Resume', 'subtitle': 'Create a new professional resumes'},
     {'title': 'Edit Resume', 'subtitle': 'Modify your existing resume'},
   ];
   var selectedTabIndex = 0.obs;
