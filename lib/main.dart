@@ -20,24 +20,22 @@ void main() async {
 
   selectedLocale = LanUtil.getSelecctedLanguage();
 
-  // Only show the delay on mobile platforms
   if (!kIsWeb) {
     await Future<void>.delayed(const Duration(milliseconds: 5000));
   }
 
-  // Initialize Telegram WebApp
+  // Telegram WebApp Init
   try {
     final telegramWebApp = js.context['Telegram']?['WebApp'];
     if (telegramWebApp != null) {
-      // Initialize the WebApp
       telegramWebApp.callMethod('ready');
       telegramWebApp.callMethod('expand');
     }
   } catch (e) {
-    print('Error initializing Telegram WebApp: $e');
+    print('Telegram init error: $e');
   }
 
-  // Initialize GetX
+  // 🔧 Make sure this is BEFORE runApp
   Get.put(TelegramService());
 
   runApp(

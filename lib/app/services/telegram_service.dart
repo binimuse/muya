@@ -25,25 +25,25 @@ class TelegramService extends GetxService {
         return;
       }
 
-      // Initialize the WebApp
+      // Init the Telegram WebApp
       telegramWebApp.callMethod('ready');
       telegramWebApp.callMethod('expand');
 
-      // Get initData
+      // Get raw initData string
       final rawInitData = telegramWebApp['initData'];
       if (rawInitData != null) {
         initData.value = rawInitData;
       }
 
-      // Get user data
-      final user = telegramWebApp['initData']?['user'];
+      // ✅ FIX: Get user from initDataUnsafe
+      final user = telegramWebApp['initDataUnsafe']?['user'];
       if (user != null) {
         firstName.value = user['first_name'] ?? '';
         lastName.value = user['last_name'] ?? '';
-        phoneNumber.value = user['phone_number'] ?? '';
         username.value = user['username'] ?? '';
+        phoneNumber.value = user['phone_number'] ?? '';
 
-        // Set the display name
+        // Set display name
         if (firstName.value.isNotEmpty || lastName.value.isNotEmpty) {
           userName.value = '${firstName.value} ${lastName.value}'.trim();
         } else if (username.value.isNotEmpty) {
@@ -52,15 +52,17 @@ class TelegramService extends GetxService {
           userName.value = 'User';
         }
 
-        print('Telegram User Data:');
+        print('✅ Telegram User Loaded:');
         print('First Name: ${firstName.value}');
         print('Last Name: ${lastName.value}');
         print('Username: ${username.value}');
         print('Phone: ${phoneNumber.value}');
-        print('Init Data: ${initData.value}');
+        print('InitData: ${initData.value}');
+      } else {
+        print('⚠️ Telegram user not found in initDataUnsafe');
       }
     } catch (e) {
-      print('Error initializing Telegram WebApp: $e');
+      print('❌ Error initializing Telegram WebApp: $e');
     }
   }
 
