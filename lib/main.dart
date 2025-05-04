@@ -8,6 +8,8 @@ import 'app/routes/app_pages.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:upgrader/upgrader.dart';
+import 'dart:js' as js;
+import 'package:muya/app/services/telegram_service.dart';
 
 final botToastBuilder = BotToastInit();
 late String selectedLocale;
@@ -22,6 +24,21 @@ void main() async {
   if (!kIsWeb) {
     await Future<void>.delayed(const Duration(milliseconds: 5000));
   }
+
+  // Initialize Telegram WebApp
+  try {
+    final telegramWebApp = js.context['Telegram']?['WebApp'];
+    if (telegramWebApp != null) {
+      // Initialize the WebApp
+      telegramWebApp.callMethod('ready');
+      telegramWebApp.callMethod('expand');
+    }
+  } catch (e) {
+    print('Error initializing Telegram WebApp: $e');
+  }
+
+  // Initialize GetX
+  Get.put(TelegramService());
 
   runApp(
     ResponsiveSizer(
