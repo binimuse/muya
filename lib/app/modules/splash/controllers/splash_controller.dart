@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
-import 'package:muya/app/common/app_toasts.dart';
+
 import 'package:muya/app/routes/app_pages.dart';
 import 'package:muya/gen/assets.gen.dart';
-
-import 'package:permission_handler/permission_handler.dart';
 
 class SplashController extends GetxController {
   final String splasehimage = Assets.logos.logo.path;
