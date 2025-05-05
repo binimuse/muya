@@ -27,5 +27,16 @@ class SplashController extends GetxController {
     }
 
     Get.offNamed(Routes.HOME);
+    // First check notification permission
+    // final notificationPermissionStatus = await requestNotificationPermission();
+
+    // if (notificationPermissionStatus == PermissionStatus.granted) {
+    //   await _checkAuthAndNavigate();
+    // } else {
+    //   AppToasts.showError("Please Enable Permissions".tr);
+    //   await openAppSettings();
+    //   // After opening settings, check again
+    //   await _checkAuthAndNavigate();
+    // }
   }
 }

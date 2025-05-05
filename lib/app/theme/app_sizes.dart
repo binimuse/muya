@@ -53,7 +53,7 @@ class AppSizes {
   static final double font_12 =
       Device.screenType == ScreenType.mobile ? 16.sp : 16.sp * 1.4;
   static final double font_14 =
-      Device.screenType == ScreenType.mobile ? 19.sp : AppSizes.font_14 * 1.4;
+      Device.screenType == ScreenType.mobile ? 19.sp : 19.sp * 1.4;
   static final double font_16 =
       Device.screenType == ScreenType.mobile ? 20.sp : 20.sp * 1.4;
   static final double font_18 =
