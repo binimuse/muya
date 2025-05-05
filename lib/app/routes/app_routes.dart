@@ -6,6 +6,8 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const SPLASH = _Paths.SPLASH;
   static const CREATE_RESUME = _Paths.CREATE_RESUME;
+  static const WRITE_JOB_DESCRIPTION = _Paths.WRITE_JOB_DESCRIPTION;
+  static const WRITE_COVER_LETTER = _Paths.WRITE_COVER_LETTER;
 }
 
 abstract class _Paths {
@@ -13,4 +15,6 @@ abstract class _Paths {
   static const HOME = '/home';
   static const SPLASH = '/splash';
   static const CREATE_RESUME = '/create-resume';
+  static const WRITE_JOB_DESCRIPTION = '/write-job-description';
+  static const WRITE_COVER_LETTER = '/write-cover-letter';
 }

@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:muya/app/theme/app_colors.dart';
 import 'package:muya/app/theme/app_sizes.dart';
 import 'package:muya/app/theme/app_text_styles.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:muya/gen/assets.gen.dart';
 

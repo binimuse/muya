@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:muya/app/common/app_toasts.dart';
+import 'package:muya/app/routes/app_pages.dart';
 import 'package:muya/app/theme/app_colors.dart';
 import 'package:muya/app/theme/app_sizes.dart';
 import 'package:muya/app/theme/app_text_styles.dart';
@@ -122,7 +123,11 @@ class HomeView extends GetView<HomeController> {
           borderRadius: BorderRadius.circular(18),
           onTap: () {
             if (slide['title'] == 'Create Resume') {
-              Get.toNamed('/create-resume');
+              Get.toNamed(Routes.CREATE_RESUME);
+            } else if (slide['title'] == 'Write Job Description') {
+              Get.toNamed(Routes.WRITE_JOB_DESCRIPTION);
+            } else if (slide['title'] == 'Write Cover Letter') {
+              Get.toNamed(Routes.WRITE_COVER_LETTER);
             }
           },
           child: Padding(

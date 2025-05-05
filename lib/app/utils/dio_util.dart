@@ -1,5 +1,3 @@
-import 'package:dio/dio.dart';
-import 'package:get/get.dart';
 
 class DioUtil {
   static final DioUtil _instance = DioUtil._internal();
